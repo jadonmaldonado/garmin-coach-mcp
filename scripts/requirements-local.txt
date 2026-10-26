@@ -1,0 +1,4 @@
+# For the bootstrap/backfill scripts on your machine (Python 3.12+).
+garminconnect==0.3.19
+curl_cffi
+boto3

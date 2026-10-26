@@ -1,0 +1,12 @@
+# Optional but recommended: remote state in S3 with native locking (Terraform >= 1.10).
+# State contains the connector token, so keep the bucket private and encrypted.
+# Rename to backend.tf, create the bucket once, then run `terraform init -migrate-state`.
+terraform {
+  backend "s3" {
+    bucket       = "YOUR-UNIQUE-tfstate-bucket"
+    key          = "garmin-coach/terraform.tfstate"
+    region       = "us-west-2"
+    encrypt      = true
+    use_lockfile = true
+  }
+}

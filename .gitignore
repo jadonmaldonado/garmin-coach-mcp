@@ -1,0 +1,16 @@
+build/
+dist/
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+garmin_tokens.json
+.garminconnect/
+
+terraform/.terraform/
+terraform/.terraform.lock.hcl.bak
+*.tfstate
+*.tfstate.*
+terraform/terraform.tfvars
+terraform/backend.tf
+crash.log

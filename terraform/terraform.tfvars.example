@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars (git-ignored) and edit.
+aws_region       = "us-west-2"
+athlete_timezone = "America/Los_Angeles"
+athlete_goals    = "Marathon build, then IRONMAN California 2027. Manage load across swim/bike/run; avoid injury."
+alert_email      = "you@example.com"
+
+# Fill in real dates from the race websites.
+race_calendar = [
+  # { name = "Spring Marathon", date = "2027-03-07", priority = "B" },
+  # { name = "IRONMAN California", date = "2027-10-XX", priority = "A" },
+]
+
+# athlete_max_hr = 188  # optional; improves the HR-based load fallback

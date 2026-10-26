@@ -1,0 +1,5 @@
+# Pinned for reproducible builds. Garmin changes auth occasionally; when syncs start
+# failing, check https://github.com/cyberjunky/python-garminconnect/releases and bump.
+garminconnect==0.3.19
+curl_cffi
+tzdata
