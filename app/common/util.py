@@ -3,7 +3,7 @@
 import json
 import math
 import os
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 from decimal import Decimal
 
 
@@ -15,7 +15,7 @@ def athlete_tz():
 
         return ZoneInfo(name)
     except Exception:  # missing tzdata or bad name
-        return timezone.utc
+        return UTC
 
 
 def today_local() -> date:
@@ -23,7 +23,7 @@ def today_local() -> date:
 
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return datetime.now(UTC).isoformat(timespec="seconds")
 
 
 def parse_date(value, default: date) -> date:
@@ -111,7 +111,7 @@ def emf_metric(name: str, value: float, namespace: str = "GarminCoach") -> None:
         json.dumps(
             {
                 "_aws": {
-                    "Timestamp": int(datetime.now(timezone.utc).timestamp() * 1000),
+                    "Timestamp": int(datetime.now(UTC).timestamp() * 1000),
                     "CloudWatchMetrics": [
                         {"Namespace": namespace, "Dimensions": [[]], "Metrics": [{"Name": name, "Unit": "Count"}]}
                     ],

@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from common.load import acwr_zone, activity_load, daily_loads, dedupe_multisport, pmc, trimp
+from common.load import activity_load, acwr_zone, daily_loads, dedupe_multisport, pmc, trimp
 
 
 def test_activity_load_prefers_garmin_value():

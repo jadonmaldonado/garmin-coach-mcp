@@ -7,7 +7,7 @@ import json
 import os
 import statistics
 from collections import defaultdict
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 
 from common import store
 from common.load import acwr_zone, daily_loads, form_zone, pmc
@@ -202,9 +202,9 @@ def get_weekly_summary(weeks=8, end_date=None):
     for i in range(weeks):
         ws = first_week + timedelta(weeks=i)
         we = ws + timedelta(days=6)
-        in_week = lambda d: ws.isoformat() <= d <= we.isoformat()  # noqa: E731
-        wa = [a for a in acts if in_week(a["date"])]
-        wd = [d for d in days if in_week(d["date"])]
+        lo, hi = ws.isoformat(), we.isoformat()
+        wa = [a for a in acts if lo <= a["date"] <= hi]
+        wd = [d for d in days if lo <= d["date"] <= hi]
         sports = {}
         for s in SPORTS:
             sa = [a for a in wa if a.get("sport") == s]
@@ -243,7 +243,7 @@ def get_sync_status():
     item = _clean(item)
     finished = item.get("finished_at")
     if finished:
-        age = datetime.now(timezone.utc) - datetime.fromisoformat(finished)
+        age = datetime.now(UTC) - datetime.fromisoformat(finished)
         item["hours_since_sync"] = round(age.total_seconds() / 3600, 1)
     return item
 
